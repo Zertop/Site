@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="parse.js"></script>
-<iframe id="downloadBlock" style="display:none;"></iframe>
+<script>
+    //Parse latest github release and serve to client
+    $.getJSON('https://api.github.com/repos/Zertop/LineTool/releases?' + (new Date()).getTime(), function (data) {
+        for (var j in data) {
+            $("#downloadLinks").append("<a href=" + data[j].assets[0].browser_download_url + ">" + data[j].tag_name + "</a></br>");
+        }
+    });
+</script>
+<div id="downloadLinks"></div>
 </html>
